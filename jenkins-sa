@@ -1,0 +1,27 @@
+    {
+          "kind": "ServiceAccount",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "jenkins",
+                "annotations": {
+                    "serviceaccounts.openshift.io/oauth-redirectreference.jenkins": "{\"kind\":\"OAuthRedirectReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"Route\",\"name\":\"jenkins\"}}"
+                }
+            }
+        },
+        {
+          "kind": "RoleBinding",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "jenkins_edit"
+          },
+          "groupNames": null,
+          "subjects": [
+              {
+                  "kind": "ServiceAccount",
+                  "name": "jenkins"
+              }
+          ],
+          "roleRef": {
+              "name": "edit"
+          }
+        }
